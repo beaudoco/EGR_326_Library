@@ -1,6 +1,8 @@
 #ifndef _MOTORLIBH_
 #define _MOTORLIBH_
 
+void MOTORLIB_portInit(void);
+void MOTORLIB_timerInit(void);
 void MOTORLIB_moveForward(void);
 void MOTORLIB_moveBackward(void);
 void MOTORLIB_moveLeft(void);
