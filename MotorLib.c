@@ -47,6 +47,27 @@ int dcLeft  = 100;
 int dcRight = 100;
 
 void MOTORLIB_portInit(void) {
+
+    // Configure GPIO
+    P2->DIR  |= BIT4;
+    P2->SEL0 |= BIT4;
+    P2->SEL1 %= ~(BIT4);
+
+    // Configure GPIO
+    P2->DIR  |= BIT5;
+    P2->SEL0 |= BIT5;
+    P2->SEL1 %= ~(BIT5);
+
+    // Configure GPIO
+    P2->DIR  |= BIT6;
+    P2->SEL0 |= BIT6;
+    P2->SEL1 %= ~(BIT6);
+
+    // Configure GPIO
+    P2->DIR  |= BIT7;
+    P2->SEL0 |= BIT7;
+    P2->SEL1 %= ~(BIT7);
+
     /* MFL */
     MAP_GPIO_setAsOutputPin(GPIO_PORT_P8, GPIO_PIN5);
     MAP_GPIO_setAsOutputPin(GPIO_PORT_P9, GPIO_PIN0);
@@ -117,15 +138,15 @@ void MOTORLIB_moveRight(void) {
 
 void MOTORLIB_setTimerALeftDC(int dc) {
     TIMER_A0->CCR[0]  = 30000; // PWM Period
-    TIMER_A0->CCTL[1] = TIMER_A_CCTLN_OUTMOD_7; //CCR1 reset/set
-    TIMER_A0->CCR[1]  = dc*3000;// CCR1 PWM Duty Cycle
+    TIMER_A0->CCTL[2] = TIMER_A_CCTLN_OUTMOD_7; //CCR1 reset/set
+    TIMER_A0->CCR[2]  = dc*3000;// CCR1 PWM Duty Cycle
     TIMER_A0->CTL     = TIMER_A_CTL_SSEL__SMCLK | TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR; // Clear TAR
 }
 
 void MOTORLIB_setTimerARightDC(int dc) {
     TIMER_A0->CCR[0]  = 30000; // PWM Period
-    TIMER_A0->CCTL[2] = TIMER_A_CCTLN_OUTMOD_7; //CCR1 reset/set
-    TIMER_A0->CCR[2]  = dc*3000;// CCR1 PWM Duty Cycle
+    TIMER_A0->CCTL[3] = TIMER_A_CCTLN_OUTMOD_7; //CCR1 reset/set
+    TIMER_A0->CCR[3]  = dc*3000;// CCR1 PWM Duty Cycle
     TIMER_A0->CTL     = TIMER_A_CTL_SSEL__SMCLK | TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR; // Clear TAR
 }
 
